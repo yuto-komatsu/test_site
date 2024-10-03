@@ -1,7 +1,4 @@
-!pip install mip
-!pip install jpholiday
-
-!pip install streamlit
+pip install -r requirements.txt
 
 import streamlit as st
 import datetime
