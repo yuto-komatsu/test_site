@@ -1,3 +1,8 @@
+!pip install mip
+!pip install jpholiday
+
+!pip install streamlit
+
 import streamlit as st
 import datetime
 from datetime import date
