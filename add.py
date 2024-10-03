@@ -1,6 +1,6 @@
 pip install -r requirements.txt
 
-!pip freeze > requirements.txt
+pip freeze > requirements.txt
 
 import streamlit as st
 import datetime
