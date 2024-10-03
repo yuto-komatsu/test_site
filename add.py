@@ -75,22 +75,22 @@ def band_list_making(sheet):
 # Webアプリのタイトル
 st.title('シフトスケジュール最適化')
 
-uploaded_file_path = 'シフト希望表.xlsx'
+# uploaded_file_path = 'シフト希望表.xlsx'
 
 # ファイルをバイトとして読み込む
-with open(uploaded_file_path, 'rb') as file:
-    band_listfile = file.read()
+# with open(uploaded_file_path, 'rb') as file:
+#     band_listfile = file.read()
 
 st.header('１．参加バンドの登録')
 st.caption('ダウンロードボタンからテンプレートをダウンロードして、出演バンドを記入してください。')
 st.caption('記入を終えたファイルをアップロードしてください。')
 
-st.download_button(
-    label="テンプレートをダウンロード",
-    data=band_listfile,
-    file_name='downloaded_file.xlsx',
-    mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-)
+# st.download_button(
+#     label="テンプレートをダウンロード",
+#     data=band_listfile,
+#     file_name='downloaded_file.xlsx',
+#     mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+# )
 
 st.session_state["uploaded_file1"] = st.file_uploader("バンド名簿をアップロード", type=["xlsx"], on_change=change_page)
 
