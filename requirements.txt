@@ -1,4 +1,6 @@
 !pip install mip
 !pip install jpholiday
 
+openpyxl==3.1.2 
+
 !pip install streamlit
