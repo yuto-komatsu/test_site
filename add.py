@@ -213,27 +213,28 @@ def input_date():
 st.title('シフトスケジュール最適化')
 
 
-# #ページ１：参加バンド登録
-# uploaded_file_path = 'シフト希望表.xlsx'
-# # ファイルをバイトとして読み込む
-# with open(uploaded_file_path, 'rb') as file:
-#     band_listfile = file.read()
+#ページ１：参加バンド登録
+uploaded_file_path = 'シフト希望表.xlsx'
+# ファイルをバイトとして読み込む
+with open(uploaded_file_path, 'rb') as file:
+    band_listfile = file.read()
 
 if st.session_state["page_control"] == 0:
   st.header('１．参加バンドの登録')
   st.caption('ダウンロードボタンからテンプレートをダウンロードして、出演バンドを記入してください。')
   st.caption('記入を終えたファイルをアップロードしてください。')
 
-  # st.download_button(
-  #     label="テンプレートをダウンロード",
-  #     data=band_listfile,
-  #     file_name='downloaded_file.xlsx',
-  #     mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-  # )
+  st.download_button(
+      label="テンプレートをダウンロード",
+      data=band_listfile,
+      file_name='downloaded_file.xlsx',
+      mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  )
 
   st.session_state["uploaded_file1"] = st.file_uploader("バンド名簿をアップロード", type=["xlsx"],key = "バンド名簿")
   if st.session_state["uploaded_file1"] is not None:
-      change_page()
+    change_page()
+    st.empty()
 
 
 
@@ -270,14 +271,14 @@ if "page_control" in st.session_state and st.session_state["page_control"] == 2:
 
   st.session_state["kibou_file"] = st.file_uploader("シフト希望表をアップロード", type=["xlsx"],key = "希望")
   if st.session_state["kibou_file"] is not None:
-    # change_page()
-    st.session_state["page_control"] = 3
+    change_page()
+
 
 
 #ページ４：最適化の実行
 if "page_control" in st.session_state and st.session_state["page_control"] == 3:
   st.write('４．最適化の実行')
-  st.stop()
+#   st.session_state["kibou_file2"] = st.file_uploader("シフト希望表をアップロード", type=["xlsx"],key = "望")
 
 #         # セッションからファイルを読み込む
 #         kibou_file = st.session_state['kibou_file']
