@@ -35,42 +35,42 @@ def band_list_making(sheet):
     band_sum = len(st.session_state[band_list])
     return band_sum
 
-def option_select():
-    max_practice = st.selectbox(
-        '最大練習回数',
-        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        index=0,
-        placeholder="練習回数を選択してください"
-    )
-    return max_practice
+# def option_select():
+#     max_practice = st.selectbox(
+#         '最大練習回数',
+#         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+#         index=0,
+#         placeholder="練習回数を選択してください"
+#     )
+#     return max_practice
 
-def input_date(start_day, end_day):
-    book = openpyxl.Workbook()
-    for i in range(1, band_sum + 1):
-        book.create_sheet(index=0, title=band_list[i])
-        sheet = book[band_list[i]]
-        for t in range(1, 8):
-            sheet.cell(row=2 + t, column=2).value = str(t) + "限"
-        calc_day = start_day
-        j = 1
-        while calc_day <= end_day:
-            sheet.cell(row=2, column=2 + j).value = str(calc_day.month) + "/" + str(calc_day.day)
-            j += 1
-            calc_day += datetime.timedelta(days=1)
+# def input_date(start_day, end_day):
+#     book = openpyxl.Workbook()
+#     for i in range(1, band_sum + 1):
+#         book.create_sheet(index=0, title=band_list[i])
+#         sheet = book[band_list[i]]
+#         for t in range(1, 8):
+#             sheet.cell(row=2 + t, column=2).value = str(t) + "限"
+#         calc_day = start_day
+#         j = 1
+#         while calc_day <= end_day:
+#             sheet.cell(row=2, column=2 + j).value = str(calc_day.month) + "/" + str(calc_day.day)
+#             j += 1
+#             calc_day += datetime.timedelta(days=1)
 
-    if 'Sheet' in book.sheetnames:
-        book.remove(book['Sheet'])
+#     if 'Sheet' in book.sheetnames:
+#         book.remove(book['Sheet'])
 
-    buffer = BytesIO()
-    book.save(buffer)
-    buffer.seek(0)
+#     buffer = BytesIO()
+#     book.save(buffer)
+#     buffer.seek(0)
 
-    st.download_button(
-        label="ダウンロード",
-        data=buffer,
-        file_name='downloaded_file2.xlsx',
-        mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    )
+#     st.download_button(
+#         label="ダウンロード",
+#         data=buffer,
+#         file_name='downloaded_file2.xlsx',
+#         mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+#     )
 
 # Webアプリのタイトル
 st.title('シフトスケジュール最適化')
@@ -78,19 +78,19 @@ st.title('シフトスケジュール最適化')
 uploaded_file_path = 'シフト希望表.xlsx'
 
 # ファイルをバイトとして読み込む
-# with open(uploaded_file_path, 'rb') as file:
-#     band_listfile = file.read()
+with open(uploaded_file_path, 'rb') as file:
+    band_listfile = file.read()
 
 st.header('１．参加バンドの登録')
 st.caption('ダウンロードボタンからテンプレートをダウンロードして、出演バンドを記入してください。')
 st.caption('記入を終えたファイルをアップロードしてください。')
 
-# st.download_button(
-#     label="テンプレートをダウンロード",
-#     data=band_listfile,
-#     file_name='downloaded_file.xlsx',
-#     mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-# )
+st.download_button(
+    label="テンプレートをダウンロード",
+    data=band_listfile,
+    file_name='downloaded_file.xlsx',
+    mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+)
 
 st.session_state["uploaded_file1"] = st.file_uploader("バンド名簿をアップロード", type=["xlsx"], on_change=change_page)
 
